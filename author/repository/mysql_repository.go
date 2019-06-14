@@ -10,6 +10,7 @@ import (
 	"github.com/jbabin91/go-clean-arch/models"
 )
 
+// MysqlAuthorRepo defines the db property to be used when getting the author data from the db
 type MysqlAuthorRepo struct {
 	DB *sql.DB
 }
@@ -37,6 +38,7 @@ func (m *MysqlAuthorRepo) getOne(ctx context.context, query string, args ...inte
 	return a, nil
 }
 
+// GetByID returns the Author's information by using the ID of the author to retrieve the data
 func (m *MysqlAuthorRepo) GetByID(ctx context.Context, id uint64) (*models.Author, error) {
 	query := `SELECT id, name, created_at, updated_at FROM author WHERE id=?`
 	return m.getOne(ctx, query, id)
